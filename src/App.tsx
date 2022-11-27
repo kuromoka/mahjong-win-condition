@@ -1,9 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import init, { greet } from "../wasm/pkg/mahjong_win_condition";
+import wasmUrl from "../wasm/pkg/mahjong_win_condition_bg.wasm?url";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  init(wasmUrl).then((instance) => {
+    greet("test!");
+  });
 
   return (
     <div className="App">
@@ -28,7 +33,7 @@ function App() {
         Click on the Vite and React logos to learn more
       </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
